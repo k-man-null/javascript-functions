@@ -199,15 +199,19 @@ describe("Conway's Game of Life", () => {
         typeof gameoflife.printCells([[3, 2]]), "string",
         "Have you created a 'printCells' function that returns a string representation of the game state?"
       );
+
+
       assert.equal(trimOfWhitespace(gameoflife.printCells([[3, 2]])), "▣",
         "Have you created a 'printCells' function that prints '▣' for each living cell, '▢' for each non-living cell and a newline character at the end of each row?"
       );
+
       assert.equal(trimOfWhitespace(gameoflife.printCells([
           [3, 2],
           [5, 2]
         ])), trimOfWhitespace("▣ ▢ \n ▣\n"),
         "Have you created a 'printCells' function that prints '▣' for each living cell, '▢' for each non-living cell, a space in between each cell and a newline character at the end of each row?"
       );
+      
       assert(
         trimOfWhitespace(gameoflife.printCells([
           [3, 2],
