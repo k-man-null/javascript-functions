@@ -57,39 +57,19 @@ const corners = (state = []) => {
 };
 
 const printCells = (state) => {
-  
-  let cellMatrix
-  
-  if(state.length === 1){
-    cellMatrix = unescape('\u25A3')//`${printCell(state,state)}\x20\n`
-  }else {
-      let cells = []
-      const x = corners(state).topRight[0]
-      const y = corners(state).topRight[1]
-      const a = corners(state).bottomLeft[0];
-      const b = corners(state).bottomLeft[1];
+      const { topRight, bottomLeft} = corners(state);
+      let cellMatrix = ''
+      const x = topRight[0]
+      const y = topRight[1]
+      const a = bottomLeft[0];
+      const b = bottomLeft[1];
       for(let i=y;i>b-1;i--){
+        let row = []
         for(let ii=a;ii<x+1;ii++){
-          cells.push([ii,i])
+          row.push(printCell([ii,i],state))
         }
-      }
-      let Cells;
-      Cells = cells
-      let cellsString = ''
-      for(let cell of Cells){
-        cellsString += printCell(cell,state)
-      }
-      let spacedString
-      spacedString = cellsString.split('').join(' ')
-      let splitArray
-      splitArray = spacedString.match(/.{1,5}/g);
-      
-      let finalString = ''
-      for(let myString of splitArray){
-      finalString+=`${myString}\n`
-      }
-      cellMatrix = finalString
-    }
+        cellMatrix += row.join(' ')+ '\n'
+      }      
     return cellMatrix        
 }
 
